@@ -1,6 +1,6 @@
 package com.example.belocky;
 
-public class Desencriptar {
+public class Desencriptacion {
     public void desencriptar(){
 
     }
