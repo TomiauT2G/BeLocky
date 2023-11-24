@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "261083435298",
+    "project_id": "belocky-c7696",
+    "storage_bucket": "belocky-c7696.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261083435298:android:e4cd73d0137789a4bd557b",
+        "android_client_info": {
+          "package_name": "com.example.belocky"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6TAtFDWwzmNUBiM0Arw32tvid_3H1Yiw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
