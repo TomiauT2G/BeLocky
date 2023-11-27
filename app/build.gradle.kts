@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -26,10 +27,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-}
-plugins {
-    id("com.android.application")
-    id("com.google.gms.google-services")
 }
 dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
