@@ -1,7 +1,5 @@
 package com.example.belocky;
 import javax.crypto.*;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 public class Encriptacion {
