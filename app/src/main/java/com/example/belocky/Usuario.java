@@ -1,17 +1,16 @@
 package com.example.belocky;
 
 public class Usuario {
-    String id;
+    int id;
     String correo;
     String contrasenna;
 
-    public Usuario(String id, String correo, String contrasenna) {
+    public Usuario(int id, String correo, String contrasenna) {
         this.id = id;
         this.correo = correo;
         this.contrasenna = contrasenna;
     }
-    public void getDataUsuario(){
-
+    public int getID(){return id ;
     }
 
     public void setDataUsuario(){
