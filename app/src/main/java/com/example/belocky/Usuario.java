@@ -17,6 +17,18 @@ public class Usuario {
         return id;
     }
 
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public String getContrasenna() {
+        return contrasenna;
+    }
+
     public void setDataUsuario() {
 
     }

@@ -1,10 +1,11 @@
 package com.example.belocky;
 
 public class FireBase {
-    public void conectar(){
+    public void conectar() {
 
     }
-    public void autenticar(){
+
+    public void autenticar() {
 
     }
 }
