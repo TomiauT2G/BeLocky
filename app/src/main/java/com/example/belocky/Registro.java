@@ -11,7 +11,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import javax.crypto.SecretKey;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;

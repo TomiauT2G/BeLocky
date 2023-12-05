@@ -2,10 +2,11 @@ package com.example.belocky;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.*;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
+import android.widget.VideoView;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 
