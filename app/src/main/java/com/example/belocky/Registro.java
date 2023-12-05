@@ -11,6 +11,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import javax.crypto.SecretKey;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 public class Registro extends AppCompatActivity {
@@ -33,11 +35,11 @@ public class Registro extends AppCompatActivity {
         Cor = findViewById(R.id.Correo);
         Con = findViewById(R.id.Contrasena);
 
-
         ImageButton frr = findViewById(R.id.reff);
 
 
         frr.setOnClickListener(view -> {
+
             String NombreDeUsuario = Nom.getText().toString().trim();
             String Correo = Cor.getText().toString().trim();
             String Contrasena = Con.getText().toString().trim();
@@ -47,11 +49,11 @@ public class Registro extends AppCompatActivity {
             }else{
                 RegistrarUsuario(NombreDeUsuario, Correo, Contrasena);
             }
+
         });
     }
 
     public void RegistrarUsuario(String nameUser, String emailUser, String passUser) {
-
         mAuth.createUserWithEmailAndPassword(emailUser, passUser).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 FirebaseUser user = mAuth.getCurrentUser();

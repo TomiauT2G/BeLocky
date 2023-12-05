@@ -1,17 +1,17 @@
 package com.example.belocky;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.Toast;
-import android.widget.VideoView;
+import android.view.View;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class Ingreso extends AppCompatActivity {
+    private static final int RC_SIGN_IN = 9001;
+    private GoogleApiClient mGoogleApiClient;
 
     private EditText Cor;
     private EditText Con;
@@ -39,6 +39,7 @@ public class Ingreso extends AppCompatActivity {
                 loginUser(email, password);
             }
         });
+
     }
 
     private void loginUser(String email, String password) {

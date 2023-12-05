@@ -10,7 +10,7 @@
             android:id="@+id/videoView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@raw/z" tools:layout_editor_absoluteY="0dp" tools:layout_editor_absoluteX="0dp"
+            android:src="@raw/z" tools:layout_editor_absoluteY="0dp" tools:layout_editor_absoluteX="-108dp"
     />
     <ImageView
             android:id="@+id/Logo"
@@ -68,6 +68,12 @@
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintVertical_bias="0.934"
     />
+    <ImageButton
+            android:layout_width="57dp"
+            android:layout_height="58dp" app:srcCompat="@drawable/image" android:id="@+id/isg"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.745" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
