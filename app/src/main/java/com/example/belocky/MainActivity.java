@@ -3,6 +3,7 @@ package com.example.belocky;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -13,6 +14,10 @@ import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.GoogleApiClient;
 import android.view.View;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+
+import static android.content.ContentValues.TAG;
 
 public class MainActivity extends AppCompatActivity {
     ImageView Logo;
@@ -79,6 +84,26 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInAccount account = Auth.GoogleSignInApi.getSignInResultFromIntent(data).getSignInAccount();
+            handleSignInResult(account);
+        }
+    }
+
+    private void handleSignInResult(GoogleSignInAccount account) {
+        if (account != null) {
+            String email = account.getEmail();
+            String displayName = account.getDisplayName();
+            String id = account.getId();
+
+
+            Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                    new ResultCallback<Status>() {
+                        @Override
+                        public void onResult(Status status) {
+                            // Acción después del cierre de sesión (opcional)
+                        }
+                    });
+        } else {
+            Log.e(TAG, "Error en la autenticación con Google");
         }
     }
 }

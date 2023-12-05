@@ -26,6 +26,7 @@ public class Ingreso extends AppCompatActivity {
         videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.z);
         videoView.start();
         videoView.setOnPreparedListener(mp -> mp.setLooping(true));
+
         ImageButton loginButton = findViewById(R.id.intto);
         Cor = findViewById(R.id.Correo);
         Con = findViewById(R.id.Contrasena);
@@ -43,16 +44,21 @@ public class Ingreso extends AppCompatActivity {
     }
 
     private void loginUser(String email, String password) {
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        startActivity(new Intent(Ingreso.this, Gestor.class));
-                        Toast.makeText(Ingreso.this, "Bienvenido", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(Ingreso.this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(e -> Toast.makeText(Ingreso.this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show());
+        ManejoEncriptacion M = new ManejoEncriptacion();
+        try {
+            mAuth.signInWithEmailAndPassword(email,M.encriptarLO(password))
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            startActivity(new Intent(Ingreso.this, Gestor.class));
+                            Toast.makeText(Ingreso.this, "Bienvenido", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(Ingreso.this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(e -> Toast.makeText(Ingreso.this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

@@ -18,12 +18,14 @@ import java.util.Map;
 public class Registro extends AppCompatActivity {
     FirebaseFirestore mFirestore;
     FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         mFirestore = FirebaseFirestore.getInstance();
         EditText Nom , Cor,Con;
+        ManejoEncriptacion M = new ManejoEncriptacion();
 
         setContentView(R.layout.activity_registro);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -36,34 +38,47 @@ public class Registro extends AppCompatActivity {
         Con = findViewById(R.id.Contrasena);
 
         ImageButton frr = findViewById(R.id.reff);
+        ClaveSK sk = new ClaveSK();
+
 
 
         frr.setOnClickListener(view -> {
+            try {
 
-            String NombreDeUsuario = Nom.getText().toString().trim();
-            String Correo = Cor.getText().toString().trim();
-            String Contrasena = Con.getText().toString().trim();
-
+                String NombreDeUsuario = Nom.getText().toString().trim();
+                String Correo = Cor.getText().toString().trim();
+                String Contrasena = Con.getText().toString().trim();
+                String skm = sk.CrearSK();
             if (NombreDeUsuario.isEmpty() && Correo.isEmpty() && Contrasena.isEmpty()){
                 Toast.makeText(Registro.this, "Complete los datos", Toast.LENGTH_SHORT).show();
             }else{
-                RegistrarUsuario(NombreDeUsuario, Correo, Contrasena);
+                RegistrarUsuario(NombreDeUsuario, Correo,M.encriptarLO(Contrasena),skm);
+            }
+            } catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException(e);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
 
         });
     }
 
-    public void RegistrarUsuario(String nameUser, String emailUser, String passUser) {
+    public void RegistrarUsuario(String nameUser, String emailUser, String passUser ,String  SCK) {
+
+
         mAuth.createUserWithEmailAndPassword(emailUser, passUser).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
+
                 FirebaseUser user = mAuth.getCurrentUser();
                 if (user != null) {
+
                     String id = user.getUid();
                     Map<String, Object> map = new HashMap<>();
                     map.put("id", id);
                     map.put("Nombre De Usuario", nameUser);
                     map.put("Correo", emailUser);
                     map.put("Contraseña", passUser);
+                    map.put("Secret Key",SCK);
 
                     mFirestore.collection("Usuarios").document(id).set(map).addOnSuccessListener(unused -> {
                         finish();
@@ -76,6 +91,5 @@ public class Registro extends AppCompatActivity {
                 Toast.makeText(Registro.this, "Error al registrar el usuario", Toast.LENGTH_SHORT).show();
             }
         });
-
-}
+    }
 }
